@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"flag"
-	"fmt"
 )
 
 // Config will be the holder for our flags
@@ -10,7 +9,6 @@ type Config struct {
 	subject      string
 	isAwesome    bool
 	howAwesome   int
-	countTheWays CountTheWays
 }
 
 // Setup initializes a config from flags that
@@ -28,20 +26,6 @@ func (c *Config) Setup() {
 	flag.BoolVar(&c.isAwesome, "isawesome", false, "is it awesome or what?")
 	flag.IntVar(&c.howAwesome, "howawesome", 10, "how awesome out of 10?")
 
-	// custom variable type
-	flag.Var(&c.countTheWays, "c", "comma separated list of integers")
+	flag.Parse()
 }
 
-// GetMessage uses all of the internal
-// config vars and returns a sentence
-func (c *Config) GetMessage() string {
-	msg := c.subject
-	if c.isAwesome {
-	msg += " is awesome"
-	} else {
-	msg += " is NOT awesome"
-	}
-
-	msg = fmt.Sprintf("%s with a certainty of %d out of 10. Let me count the ways %s", msg, c.howAwesome, c.countTheWays.String())
-	return msg
-}

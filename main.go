@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/emiliano080591/go-cookbook/cmd"
 	"github.com/emiliano080591/go-cookbook/csv"
 	"github.com/emiliano080591/go-cookbook/nulls"
 	"log"
@@ -9,10 +10,11 @@ import (
 )
 
 func main() {
+	//files
 	if err := filedirs.Operate(); err != nil {
 		log.Println("the file already exists")
 	}
-
+	//CSV
 	if err := csv.WriteCSVOutput();err!=nil{
 		log.Println(err)
 	}
@@ -20,8 +22,12 @@ func main() {
 	if err := nulls.BaseEncoding();err!=nil{
 		log.Println(err)
 	}
-
+	//Parse with sql
 	if err := nulls.NullEncoding();err!=nil{
 		log.Println(err)
 	}
+	//flags
+	c:=cmd.Config{}
+	c.Setup()
+	log.Println(c)
 }
