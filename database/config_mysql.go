@@ -20,5 +20,9 @@ func Setup() (*sql.DB,error) {
 	if err!=nil {
 		return nil, err
 	}
+
+	db.SetMaxOpenConns(15)
+	db.SetMaxIdleConns(15)
+	
 	return db,nil
 }
