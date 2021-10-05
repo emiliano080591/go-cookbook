@@ -1,18 +1,13 @@
 package main
 
 import (
-	"github.com/emiliano080591/go-cookbook/cmd"
-	"github.com/emiliano080591/go-cookbook/csv"
-	"github.com/emiliano080591/go-cookbook/database"
-	"github.com/emiliano080591/go-cookbook/nulls"
+	"github.com/emiliano080591/go-cookbook/database_redis"
 	"log"
-
-	"github.com/emiliano080591/go-cookbook/filedirs"
 )
 
 func main() {
 	//files
-	if err := filedirs.Operate(); err != nil {
+	/*if err := filedirs.Operate(); err != nil {
 		log.Println("the file already exists")
 	}
 	//CSV
@@ -34,11 +29,14 @@ func main() {
 
 	//tags.EmptyStruct()
 	//tags.FullStruct()
-	db,err:=database.Setup()
-	if err != nil {
-		panic(err)
-	}
-	if err:=database.Exec(db);err != nil {
-		panic(err)
-	}
+	//db,err:= database_mysql.Setup()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//if err:= database_mysql.Exec(db);err != nil {
+	//	panic(err)
+	//}
+*/
+	client,err:=database_redis.Setup()
+	log.Println(client.Ping().String(),err)
 }
