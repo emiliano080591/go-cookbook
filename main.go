@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/emiliano080591/go-cookbook/cmd"
 	"github.com/emiliano080591/go-cookbook/csv"
+	"github.com/emiliano080591/go-cookbook/database"
 	"github.com/emiliano080591/go-cookbook/nulls"
 	"log"
 
@@ -30,4 +31,14 @@ func main() {
 	c:=cmd.Config{}
 	c.Setup()
 	log.Println(c)
+
+	//tags.EmptyStruct()
+	//tags.FullStruct()
+	db,err:=database.Setup()
+	if err != nil {
+		panic(err)
+	}
+	if err:=database.Exec(db);err != nil {
+		panic(err)
+	}
 }
