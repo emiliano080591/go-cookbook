@@ -1,9 +1,6 @@
 package main
 
-import (
-	"github.com/emiliano080591/go-cookbook/database_redis"
-	"log"
-)
+import "github.com/emiliano080591/go-cookbook/database_redis"
 
 func main() {
 	//files
@@ -37,6 +34,11 @@ func main() {
 	//	panic(err)
 	//}
 */
-	client,err:=database_redis.Setup()
-	log.Println(client.Ping().String(),err)
+	//client,err:=database_redis.Setup()
+	if err:=database_redis.Exec();err!=nil{
+		panic(err)
+	}
+	if err:=database_redis.Sort();err!=nil{
+		panic(err)
+	}
 }
