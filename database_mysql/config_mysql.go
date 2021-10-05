@@ -1,4 +1,4 @@
-package database
+package database_mysql
 
 import (
 	"database/sql"
@@ -23,6 +23,6 @@ func Setup() (*sql.DB,error) {
 
 	db.SetMaxOpenConns(15)
 	db.SetMaxIdleConns(15)
-	
+
 	return db,nil
 }
