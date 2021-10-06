@@ -1,7 +1,5 @@
 package main
 
-import "github.com/emiliano080591/go-cookbook/database_redis"
-
 func main() {
 	//files
 	/*if err := filedirs.Operate(); err != nil {
@@ -35,10 +33,11 @@ func main() {
 	//}
 */
 	//client,err:=database_redis.Setup()
-	if err:=database_redis.Exec();err!=nil{
-		panic(err)
-	}
-	if err:=database_redis.Sort();err!=nil{
-		panic(err)
-	}
+	//if err:=database_redis.Exec();err!=nil{
+	//	panic(err)
+	//}
+	//if err:=database_redis.Sort();err!=nil{
+	//	panic(err)
+	//}
+
 }
