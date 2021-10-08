@@ -45,5 +45,7 @@ func main() {
 
 	//MONGO
 	database_mongo.Exec()
+	//MONGO con interface intermedia
+	database_mongo.Exec2()
 
 }
