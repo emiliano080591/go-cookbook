@@ -6,6 +6,7 @@
 * Conexion con mysql
 * Conexion con redis 
 * Conexion con mongodb
+* Concurrencia(async)
 
 ## Bibliotecas para los storage
 ```shell
