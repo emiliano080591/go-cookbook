@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/emiliano080591/go-cookbook/context"
-	"github.com/emiliano080591/go-cookbook/database_mongo"
-
+	"context"
+	"fmt"
+	"github.com/emiliano080591/go-cookbook/state"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 	//if err:= database_mysql.Exec(db);err != nil {
 	//	panic(err)
 	//}
-*/
+	*/
 	//REDIS
 	//client,err:=database_redis.Setup()
 	//if err:=database_redis.Exec();err!=nil{
@@ -48,9 +48,9 @@ func main() {
 	//}
 
 	//MONGO
-	database_mongo.Exec()
+	//database_mongo.Exec()
 	//MONGO con interface intermedia
-	database_mongo.Exec2()
+	//database_mongo.Exec2()
 
 	//urls:=[]string{
 	//	"https://www.google.com",
@@ -69,5 +69,37 @@ func main() {
 	//	}
 	//}
 
-	context.Exec()
+	//context.Exec()
+
+	// Channels
+	test := []struct {
+		operation state.Op
+		val1      int64
+		val2      int64
+	}{
+		{state.Add, 3, 4},
+		{state.Subtract, 5, 2},
+		{state.Multiply, 5, 3},
+		{state.Divide, 6, 2},
+		{state.Divide, 6, 0},
+	}
+
+	in := make(chan *state.WorkRequest,5)
+	out := make(chan *state.WorkResponse,5)
+	ctx := context.Background()
+
+	ctx, cancel := context.WithCancel(ctx)
+	defer cancel()
+
+	go state.Processor(ctx, in, out)
+	for _, i := range test {
+		req := state.WorkRequest{i.operation, i.val1, i.val2}
+		in <- &req
+	}
+
+	for i := 0; i < 5; i++ {
+		resp := <-out
+		fmt.Printf("Request: %v; Result: %v, Error: %vn",
+			resp.Wr, resp.Result, resp.Err)
+	}
 }
