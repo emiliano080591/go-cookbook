@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"github.com/emiliano080591/go-cookbook/async"
+	"github.com/emiliano080591/go-cookbook/context"
 	"github.com/emiliano080591/go-cookbook/database_mongo"
-	"net/http"
+
 )
 
 func main() {
@@ -53,20 +52,22 @@ func main() {
 	//MONGO con interface intermedia
 	database_mongo.Exec2()
 
-	urls:=[]string{
-		"https://www.google.com",
-		"https://golang.org",
-		"https://www.github.com",
-	}
-	c:=async.NewClient(http.DefaultClient,len(urls))
+	//urls:=[]string{
+	//	"https://www.google.com",
+	//	"https://golang.org",
+	//	"https://www.github.com",
+	//}
+	//c:=async.NewClient(http.DefaultClient,len(urls))
+	//
+	//async.FetchAll(urls,c)
+	//for i:=0;i<len(urls);i++ {
+	//	select {
+	//	case resp:=<-c.Resp:
+	//		fmt.Printf("Status received for:%s:%d\n",resp.Request.URL,resp.StatusCode)
+	//	case err:=<-c.Err:
+	//		fmt.Printf("Error received:%s\n",err)
+	//	}
+	//}
 
-	async.FetchAll(urls,c)
-	for i:=0;i<len(urls);i++ {
-		select {
-		case resp:=<-c.Resp:
-			fmt.Printf("Status received for:%s:%d\n",resp.Request.URL,resp.StatusCode)
-		case err:=<-c.Err:
-			fmt.Printf("Error received:%s\n",err)
-		}
-	}
+	context.Exec()
 }
