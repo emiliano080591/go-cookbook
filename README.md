@@ -10,6 +10,7 @@
 * Mockgen
 * Context package
 * Workers
+* Basic pipeline
 
 
 ## Bibliotecas para los storages
