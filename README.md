@@ -19,6 +19,7 @@
 ## Data streams
 * Implentación de kafka
   * Sarama(library) sync
+  * Sarama async
 
 
 ## Bibliotecas para los storages
@@ -32,7 +33,7 @@
     $ go get github.com/golang/mock/mockgen
     $ go get github.com/golang/mock/gomock
 ```
-## Generar el archivo para mockear
+### Generar el archivo para mockear
 ```shell
     $ mockgen -source=archivo_para_mockear.go -destination=archivo_destino.go -package=paquete_archivo_a_mockear
 ```
